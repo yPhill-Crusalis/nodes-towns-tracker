@@ -15,18 +15,19 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Download file with datetime-named filename
+      - name: Download file
         run: |
           url="https://map.crusalis.net/nodes/towns.json"
           dt=$(date +"%Y%m%d_%H%M%S")
-          filename="nodes-towns_${dt}.json"    # Set preferred file extension
+          filename="nodes-towns_${dt}.json"
           curl -fsSL "$url" -o "$filename"
-          echo "Downloaded $url as $filename"
-          
+          echo "filename=$filename" >> $GITHUB_ENV
+      
       - name: Commit file
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data_*.ext
+          git add "$filename"
           git commit -m "Add data file downloaded at $(date -u)"
           git push
+
