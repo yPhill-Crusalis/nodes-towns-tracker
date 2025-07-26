@@ -21,6 +21,7 @@ jobs:
           filename="nodes-towns_${dt}.json"
           curl -fsSL "$url" -o "$filename"
           echo "filename=$filename" >> $GITHUB_ENV
+          echo "dt=$(date -u)" >> $GITHUB_ENV
       
       - name: Commit file
         run: |
@@ -34,7 +35,7 @@ jobs:
         uses: appleboy/discord-action@v1.2.0
         with:
           webhook_url: ${{ secrets.DATA_WEBHOOK_URL }}
-          message: "nodes-towns file downloaded at $(date -u)"
+          message: "nodes-towns file downloaded at ${{ env.dt }}"
           file: ${{ env.filename }}
 
 
