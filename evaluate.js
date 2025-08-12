@@ -59,7 +59,18 @@ function unixToUTC(unixMiliseconds) {
   return date.toUTCString();
 }
 
-// Helper function: Evaluate pairs of files
+// Helper function: Convert ms in s
+function msINs(time) {
+  return Math.floor(time/1000)
+}
+
+// 2 Helper functions: Evaluate pairs of files
+function firstFiles(files, callback) {
+  const [pathA, fileA] = files[0]
+  const [pathB, fileB] = files[1]
+  return callback(fileA, fileB, pathA, pathB)
+}
+
 function allPairsOfFiles(files, callback) {
   const results = []
   for (let i = 0; i < files.length - 1; i++) {
@@ -155,7 +166,7 @@ function getPlayerLastJoinTown(id) {
   result.push(firstFiles(files, evaluateFirst))
   result.push(...allPairsOfFiles(files, evaluatePair))
 
-  return {success: true, result}
+  return result
 }
 
 // ------------ Main ------------
