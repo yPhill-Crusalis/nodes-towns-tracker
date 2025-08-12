@@ -2,6 +2,10 @@ name: Process Data
 
 on:
   workflow_dispatch:
+  workflow_run:
+    workflows: ["Download nodes-towns from Crusalis Website"]
+    types:
+      - completed
 
 jobs:
   process:
