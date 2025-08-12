@@ -19,7 +19,8 @@
     "🟢 User was online at <t:1754692440>. (data from <t:1754692938>)",
     "🟢 User was online at <t:1754756600>. (data from <t:1754779251>)",
     "🟡 User was NOT online. (data from <t:1754865657>)",
-    "🟢 User was online at <t:1754941368>. (data from <t:1754952038>)"
+    "🟢 User was online at <t:1754941368>. (data from <t:1754952038>)",
+    "🟢 User was online at <t:1755023133>. (data from <t:1755038392>)"
   ],
   "lasttown": [
     "🚫 User has not yet joined the server. (data from <t:1753302297>)",
@@ -42,6 +43,7 @@
     "🔄 User rejoined town `null` at <t:1754649235>. (data from <t:1754692938>)",
     "⬇ (data from <t:1754779251>)",
     "⬇ (data from <t:1754865657>)",
-    "🔄 User rejoined town `null` at <t:1754931526>. (data from <t:1754952038>)"
+    "🔄 User rejoined town `null` at <t:1754931526>. (data from <t:1754952038>)",
+    "⬇ (data from <t:1755038392>)"
   ]
 }
