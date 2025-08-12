@@ -21,6 +21,8 @@ function fetchAndMergeFiles() {
   });
 }
 
+const fetchedAndMergedFiles = fetchAndMergeFiles()
+
 // Helper function: Convert filename to Unix timestamp
 function filenameToUnixtimestamp(filename) {
   // Extract the date and time part from the filename
@@ -82,7 +84,7 @@ function allPairsOfFiles(files, callback) {
 }
 
 function getPlayerLastOnline(id) {
-  const files = fetchAndMergeFiles()
+  const files = fetchedAndMergedFiles
   const result = []
 
   const evaluate = (fileA, fileB, pathA, pathB) => {
@@ -115,7 +117,7 @@ function getPlayerLastOnline(id) {
 }
 
 function getPlayerLastJoinTown(id) {
-  const files = fetchAndMergeFiles()
+  const files = fetchedAndMergedFiles
   const result = []
 
   const evaluateFirst = (fileA, fileB, pathA, pathB) => {
@@ -178,12 +180,13 @@ function saveResults(id, data) {
 }
 
 function processID(id) {
+  console.log(id)
   const data = {lastonline: getPlayerLastOnline(id), lasttown: getPlayerLastJoinTown(id)};
   saveResults(id, data);
 }
 
 function getLatestUserIDs() {
-  const files = fetchAndMergeFiles()
+  const files = fetchedAndMergedFiles
   const [path, file] = files[files.length - 1]
   const ids = Object.keys(file.residents)
   return ids
