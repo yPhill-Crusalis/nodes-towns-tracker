@@ -20,7 +20,8 @@
     "🟢 User was online at <t:1754773233>. (data from <t:1754779251>)",
     "🟢 User was online at <t:1754848544>. (data from <t:1754865657>)",
     "🟡 User was NOT online. (data from <t:1754952038>)",
-    "🟡 User was NOT online. (data from <t:1755038392>)"
+    "🟡 User was NOT online. (data from <t:1755038392>)",
+    "🟢 User was online at <t:1755096063>. (data from <t:1755124676>)"
   ],
   "lasttown": [
     "🗺️ User had no town. (data from <t:1753302297>)",
@@ -44,6 +45,7 @@
     "⬇ (data from <t:1754779251>)",
     "🔄 User rejoined town `Zydel` at <t:1754795947>. (data from <t:1754865657>)",
     "⬇ (data from <t:1754952038>)",
-    "⬇ (data from <t:1755038392>)"
+    "⬇ (data from <t:1755038392>)",
+    "⬇ (data from <t:1755124676>)"
   ]
 }
