@@ -21,7 +21,8 @@
     "🚫 User has not yet joined the server. (data from <t:1754865657>)",
     "🚫 User has not yet joined the server. (data from <t:1754952038>)",
     "🚫 User has not yet joined the server. (data from <t:1755038392>)",
-    "🚪 User has joined the server for the first time and was last online at at <t:1755115820>. (data from <t:1755124676>)"
+    "🚪 User has joined the server for the first time and was last online at at <t:1755115820>. (data from <t:1755124676>)",
+    "🟡 User was NOT online. (data from <t:1755211208>)"
   ],
   "lasttown": [
     "🚫 User has not yet joined the server. (data from <t:1753302297>)",
@@ -46,6 +47,7 @@
     "⬇ (data from <t:1754865657>)",
     "⬇ (data from <t:1754952038>)",
     "⬇ (data from <t:1755038392>)",
-    "🏠 User joined town `null` at <t:0>. (data from <t:1755124676>)"
+    "🏠 User joined town `null` at <t:0>. (data from <t:1755124676>)",
+    "⬇ (data from <t:1755211208>)"
   ]
 }
