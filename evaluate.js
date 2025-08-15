@@ -220,7 +220,7 @@ function getOfficersOverTime(townname) {
       result.push(timeString)
       if (officersA == null) {
         result.push("🏠 Town founded.")
-        officersA.forEach(name => {result.push(`🟢 User ${name} became an Officer.`)})
+        officersB.forEach(name => {result.push(`🟢 User ${name} became an Officer.`)})
       } else if (officersB == null) {
         result.push("🏚️ Town destroyed.")
       } else {
