@@ -238,7 +238,7 @@ function getOfficersOverTime(townname) {
         result.push("🏚️ Town destroyed.")
       } else {
         [left, joined] = arrayDifference(officersA, officersB)
-        left.forEach(name => {result.push(`🔴 User ${name} became an Officer.`)})
+        left.forEach(name => {result.push(`🔴 User ${name} is no longer an Officer.`)})
         joined.forEach(name => {result.push(`🟢 User ${name} became an Officer.`)})
       }
     }
