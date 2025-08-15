@@ -66,6 +66,17 @@ function msINs(time) {
   return Math.floor(time/1000)
 }
 
+// Helper function: Difference in 2 Arrays
+function arrayDifference(arr1, arr2) {
+  // Elements in arr1 but not in arr2
+  const onlyInFirst = arr1.filter(item => !arr2.includes(item));
+
+  // Elements in arr2 but not in arr1
+  const onlyInSecond = arr2.filter(item => !arr1.includes(item));
+
+  return [onlyInFirst, onlyInSecond];
+}
+
 // 2 Helper functions: Evaluate pairs of files
 function firstFiles(files, callback) {
   const [pathA, fileA] = files[0]
@@ -91,14 +102,12 @@ function getPlayerLastOnline(id) {
     let lastOnlineA = null
     let lastOnlineB = null
     const timeA = filenameToUnixtimestamp(pathA)
-    const timeB = pathB === "now" ? "now" : filenameToUnixtimestamp(pathB)
+    const timeB = filenameToUnixtimestamp(pathB)
 
     if (id in fileA.residents) lastOnlineA = fileA.residents[id].lastOnline
     if (id in fileB.residents) lastOnlineB = fileB.residents[id].lastOnline
 
-    const timeString = timeB === "now"
-      ? `data from now`
-      : `data from <t:${timeB}>`
+    const timeString = `data from <t:${timeB}>`
 
     if (lastOnlineA == null && lastOnlineB == null) {
       return `🚫 User has not yet joined the server. (${timeString})`
@@ -144,7 +153,7 @@ function getPlayerLastJoinTown(id) {
     let townJoinTimeA = 0
     let townJoinTimeB = 0
     const timeA = filenameToUnixtimestamp(pathA)
-    const timeB = pathB === "now" ? "now" : filenameToUnixtimestamp(pathB)
+    const timeB = filenameToUnixtimestamp(pathB)
 
     if (id in fileA.residents) townA = fileA.residents[id].town
     if (id in fileB.residents) townB = fileB.residents[id].town
@@ -152,9 +161,7 @@ function getPlayerLastJoinTown(id) {
     if (id in fileA.residents) townJoinTimeA = fileA.residents[id].townJoinTime
     if (id in fileB.residents) townJoinTimeB = fileB.residents[id].townJoinTime
 
-    const timeString = timeB === "now"
-      ? `data from now`
-      : `data from <t:${timeB}>`
+    const timeString = `data from <t:${timeB}>`
 
     if (townJoinTimeA == townJoinTimeB) {
       return `⬇ (${timeString})`
@@ -167,6 +174,65 @@ function getPlayerLastJoinTown(id) {
 
   result.push(firstFiles(files, evaluateFirst))
   result.push(...allPairsOfFiles(files, evaluatePair))
+
+  return result
+}
+
+function getOfficersOverTime(townname) {
+  const files = fetchedAndMergedFiles
+  const result = []
+
+  const evaluateFirst = (fileA, fileB, pathA, pathB) => {
+    let officersA = null
+    let officersB = null
+
+    if (townname in fileA.towns) officersA = fileA.towns[townname].officers.map(id => fileA.residents[id].name)
+    if (townname in fileB.towns) officersB = fileB.towns[townname].officers.map(id => fileB.residents[id].name)
+
+    const timeA = filenameToUnixtimestamp(pathA)
+    const timeB = filenameToUnixtimestamp(pathB)
+
+    const timeString = `<t:${timeA}>:`
+    result.push(timeString)
+
+    if (officersA == null) {
+      result.push(`🚫 Town has not yet been founded.`)
+    } else {
+      officersA.forEach(name => {result.push(`🟡 User ${name} was an Officer.`)})
+    }
+  }
+
+  const evaluatePair = (fileA, fileB, pathA, pathB) => {
+    let officersA = null
+    let officersB = null
+
+    if (townname in fileA.towns) officersA = fileA.towns[townname].officers.map(id => fileA.residents[id].name)
+    if (townname in fileB.towns) officersB = fileB.towns[townname].officers.map(id => fileB.residents[id].name)
+
+    const timeA = filenameToUnixtimestamp(pathA)
+    const timeB = filenameToUnixtimestamp(pathB)
+
+    const timeString = `<t:${timeB}>:`
+
+    if (officersA == officersB) {
+      // Do nothing, because nothing changed
+    } else {
+      result.push(timeString)
+      if (officersA == null) {
+        result.push("🏠 Town founded.")
+        officersA.forEach(name => {result.push(`🟢 User ${name} became an Officer.`)})
+      } else if (officersB == null) {
+        result.push("🏚️ Town destroyed.")
+      } else {
+        [left, joined] = arrayDifference(officersA, officersB)
+        left.forEach(name => {result.push(`🔴 User ${name} became an Officer.`)})
+        joined.forEach(name => {result.push(`🟢 User ${name} became an Officer.`)})
+      }
+    }
+  }
+
+  firstFiles(files, evaluateFirst)
+  allPairsOfFiles(files, evaluatePair)
 
   return result
 }
@@ -193,3 +259,18 @@ function getLatestUserIDs() {
 }
 
 getLatestUserIDs().forEach(processID);
+
+function processTownname(townname) {
+  console.log(townname)
+  const data = {compareofficers: getOfficersOverTime(townname)};
+  saveResults(townname, data);
+}
+
+function getLatestTownnames() {
+  const files = fetchedAndMergedFiles
+  const [path, file] = files[files.length - 1]
+  const townnames = Object.keys(file.towns)
+  return townnames
+}
+
+getLatestTownnames().forEach(processTownname);
