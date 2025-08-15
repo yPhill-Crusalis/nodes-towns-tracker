@@ -211,6 +211,7 @@ function getOfficersOverTime(townname) {
     if (officersA == null) {
       result.push(`🚫 Town has not yet been founded.`)
     } else {
+      result.push("🏠 Town already founded.")
       officersA.forEach(name => {result.push(`🟡 User ${name} was an Officer.`)})
     }
   }
