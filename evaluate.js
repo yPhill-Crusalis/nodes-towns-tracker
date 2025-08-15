@@ -66,6 +66,19 @@ function msINs(time) {
   return Math.floor(time/1000)
 }
 
+// Helper function: Check if 2 Arrays have the same elemnts
+function haveSameElements(arr1, arr2) {
+  const set1 = new Set(arr1);
+  const set2 = new Set(arr2);
+
+  if (set1.size !== set2.size) return false;
+
+  for (let val of set1) {
+    if (!set2.has(val)) return false;
+  }
+  return true;
+}
+
 // Helper function: Difference in 2 Arrays
 function arrayDifference(arr1, arr2) {
   // Elements in arr1 but not in arr2
@@ -214,7 +227,7 @@ function getOfficersOverTime(townname) {
 
     const timeString = `<t:${timeB}>:`
 
-    if (officersA == officersB) {
+    if (haveSameElements(officersA, officersB)) {
       // Do nothing, because nothing changed
     } else {
       result.push(timeString)
