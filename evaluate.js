@@ -205,7 +205,7 @@ function getOfficersOverTime(townname) {
     const timeA = filenameToUnixtimestamp(pathA)
     const timeB = filenameToUnixtimestamp(pathB)
 
-    const timeString = `<t:${timeA}>:`
+    const timeString = `${unixToUTC(timeA*1000)}:`
     result.push(timeString)
 
     if (officersA == null) {
@@ -226,7 +226,7 @@ function getOfficersOverTime(townname) {
     const timeA = filenameToUnixtimestamp(pathA)
     const timeB = filenameToUnixtimestamp(pathB)
 
-    const timeString = `<t:${timeB}>:`
+    const timeString = `${unixToUTC(timeB*1000)}:`
 
     if (haveSameElements(officersA, officersB)) {
       // Do nothing, because nothing changed
