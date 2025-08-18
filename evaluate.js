@@ -176,12 +176,18 @@ function getPlayerLastJoinTown(id) {
 
     const timeString = `data from <t:${timeB}>`
 
-    if (townJoinTimeA == townJoinTimeB) {
+    if (townA != townB) {
+      if (townB == null) {
+        if (townA == 0) {
+          return `🗺️ User joined server, but has no town. (${timeString})`
+        } else {
+          return `🔴 User left last town. (${timeString})`
+        }
+      } else {
+        return `🏠 User joined town \`${townB}\` at <t:${msINs(townJoinTimeB)}>. (${timeString})`
+      }
+    } else {
       return `⬇ (${timeString})`
-    } else if (townA == townB) {
-      return `🔄 User rejoined town \`${townB}\` at <t:${msINs(townJoinTimeB)}>. (${timeString})`
-    } else{
-      return `🏠 User joined town \`${townB}\` at <t:${msINs(townJoinTimeB)}>. (${timeString})`
     }
   }
 
