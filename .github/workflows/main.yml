@@ -5,6 +5,8 @@ name: Download nodes-towns from Crusalis Website
 on:
   schedule:
     - cron: '0 22 * * *'  # Every day at 12 AM CEST (10 PM UTC)
+    - cron: '45 15 * * 6'
+    - cron: '0 20 * * 6'
   workflow_dispatch:
 
 jobs:
