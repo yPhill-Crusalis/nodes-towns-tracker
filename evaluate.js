@@ -176,7 +176,7 @@ function getPlayerLastJoinTown(id) {
 
     const timeString = `data from <t:${timeB}>`
 
-    if (townA != townB) {
+    if (townA != townB && townJoinTimeA != townJoinTimeB) {
       if (townB == null) {
         if (townA == 0) {
           return `🗺️ User joined server, but has no town. (${timeString})`
