@@ -7,6 +7,7 @@ on:
     - cron: '0 22 * * *'  # Every day at 12 AM CEST (10 PM UTC)
     - cron: '45 15 * * 6'
     - cron: '0 20 * * 6'
+    - cron: '0 17 * * 4' 
   workflow_dispatch:
 
 jobs:
