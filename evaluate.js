@@ -120,14 +120,14 @@ function getPlayerLastOnline(id) {
     if (id in fileA.residents) lastOnlineA = fileA.residents[id].lastOnline
     if (id in fileB.residents) lastOnlineB = fileB.residents[id].lastOnline
 
-    const timeString = `data from <t:${timeB}>`
+    const timeString = `data from ${unixToUTC(timeB*1000)}`
 
     if (lastOnlineA == null && lastOnlineB == null) {
       return `🚫 User has not yet joined the server. (${timeString})`
     } else if (lastOnlineA == null && lastOnlineB != null) {
-      return `🚪 User has joined the server for the first time and was last online at at <t:${msINs(lastOnlineB)}>. (${timeString})`
+      return `🚪 User has joined the server for the first time and was last online at at ${unixToUTC(lastOnlineB)}. (${timeString})`
     } else if (lastOnlineA - lastOnlineB != 0) {
-      return `🟢 User was online at <t:${msINs(lastOnlineB)}>. (${timeString})`
+      return `🟢 User was online at ${unixToUTC(lastOnlineB)}. (${timeString})`
     } else {
       return `🟡 User was NOT online. (${timeString})`
     }
@@ -149,14 +149,14 @@ function getPlayerLastJoinTown(id) {
     if (id in fileA.residents) startingTown = fileA.residents[id].town
     if (id in fileA.residents) startingTownJoinTimeA = fileA.residents[id].townJoinTime
 
-    const timeString = `data from <t:${timeA}>`
+    const timeString = `data from ${unixToUTC(timeA*1000)}`
 
     if (startingTown == 0) {
       return `🚫 User has not yet joined the server. (${timeString})`
     } else if (startingTown == null) {
       return `🗺️ User had no town. (${timeString})`
     } else {
-      return `🏠 User joined town \`${startingTown}\` at <t:${msINs(startingTownJoinTimeA)}>. (${timeString})`
+      return `🏠 User joined town \`${startingTown}\` at ${unixToUTC(startingTownJoinTimeA)}. (${timeString})`
     }
   }
 
@@ -174,7 +174,7 @@ function getPlayerLastJoinTown(id) {
     if (id in fileA.residents) townJoinTimeA = fileA.residents[id].townJoinTime
     if (id in fileB.residents) townJoinTimeB = fileB.residents[id].townJoinTime
 
-    const timeString = `data from <t:${timeB}>`
+    const timeString = `data from ${unixToUTC(timeB*1000)}`
 
     if (townA != townB && townJoinTimeA != townJoinTimeB) {
       if (townB == null) {
@@ -184,7 +184,7 @@ function getPlayerLastJoinTown(id) {
           return `🔴 User left last town. (${timeString})`
         }
       } else {
-        return `🏠 User joined town \`${townB}\` at <t:${msINs(townJoinTimeB)}>. (${timeString})`
+        return `🏠 User joined town \`${townB}\` at ${unixToUTC(townJoinTimeB)}. (${timeString})`
       }
     } else {
       return `⬇ (${timeString})`
