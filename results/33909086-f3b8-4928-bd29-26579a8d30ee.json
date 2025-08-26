@@ -35,7 +35,8 @@
     "🚫 User has not yet joined the server. (data from Sat, 23 Aug 2025 20:31:49 GMT)",
     "🚫 User has not yet joined the server. (data from Sat, 23 Aug 2025 22:14:12 GMT)",
     "🚫 User has not yet joined the server. (data from Sun, 24 Aug 2025 22:14:36 GMT)",
-    "🚪 User has joined the server for the first time and was last online at at Mon, 25 Aug 2025 20:29:59 GMT. (data from Mon, 25 Aug 2025 22:15:38 GMT)"
+    "🚪 User has joined the server for the first time and was last online at at Mon, 25 Aug 2025 20:29:59 GMT. (data from Mon, 25 Aug 2025 22:15:38 GMT)",
+    "🟡 User was NOT online. (data from Tue, 26 Aug 2025 22:14:34 GMT)"
   ],
   "lasttown": [
     "🚫 User has not yet joined the server. (data from Wed, 23 Jul 2025 20:24:57 GMT)",
@@ -74,6 +75,7 @@
     "⬇ (data from Sat, 23 Aug 2025 20:31:49 GMT)",
     "⬇ (data from Sat, 23 Aug 2025 22:14:12 GMT)",
     "⬇ (data from Sun, 24 Aug 2025 22:14:36 GMT)",
-    "🗺️ User joined server, but has no town. (data from Mon, 25 Aug 2025 22:15:38 GMT)"
+    "🗺️ User joined server, but has no town. (data from Mon, 25 Aug 2025 22:15:38 GMT)",
+    "⬇ (data from Tue, 26 Aug 2025 22:14:34 GMT)"
   ]
 }
